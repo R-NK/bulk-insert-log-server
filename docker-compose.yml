@@ -1,0 +1,11 @@
+version: '3.2'
+services:
+  mysql:
+    image: mysql:latest
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=hakaru-db
+    ports:
+      - 13306:3306
