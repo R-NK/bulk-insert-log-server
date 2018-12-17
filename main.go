@@ -13,9 +13,10 @@ var db *sql.DB
 var stmt *sql.Stmt
 
 func hakaruHandler(w http.ResponseWriter, r *http.Request) {
-	stmt, e := db.Prepare("INSERT INTO eventlog(at, name, value) values(NOW(), ?, ?)")
-	if e != nil {
-		panic(e.Error())
+	var err error
+	stmt, err = db.Prepare("INSERT INTO eventlog(at, name, value) values(NOW(), ?, ?)")
+	if err != nil {
+		panic(err.Error())
 	}
 
 	defer stmt.Close()
@@ -40,7 +41,8 @@ func main() {
 	if dataSourceName == "" {
 		dataSourceName = "root:password@tcp(127.0.0.1:13306)/hakaru-db"
 	}
-	db, err := sql.Open("mysql", dataSourceName)
+	var err error
+	db, err = sql.Open("mysql", dataSourceName)
 	if err != nil {
 		panic(err.Error())
 	}
