@@ -1,9 +1,10 @@
 version: '3.2'
 services:
   mysql:
-    image: mysql:latest
+    build: ./db
     volumes:
-      - "./db:/docker-entrypoint-initdb.d"
+      - "./db/sql:/docker-entrypoint-initdb.d"
+      - "./db/conf:/etc/mysql/conf.d"
     environment:
     - MYSQL_ROOT_PASSWORD=password
     - MYSQL_DATABASE=hakaru-db
