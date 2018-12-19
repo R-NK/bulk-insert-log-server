@@ -18,4 +18,4 @@ docker/restart:
 	docker-compose restart
 
 wrk:
-	wrk -t12 -c1000 -d10s  http://localhost:8081/hakaru?name=hey&value=100
+	wrk -t12 -c1000 -d10s  http://localhost:8081/hakaru?name=hey\&value=100
