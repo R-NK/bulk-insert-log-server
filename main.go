@@ -41,10 +41,10 @@ func ticker() {
 			if err != nil {
 				fmt.Println(err)
 			} else {
-				count, _ := result.RowsAffected()
-				fmt.Println("records count: ", count)
 				queue = make([]Record, 0, 1000)
 			}
+			count, _ := result.RowsAffected()
+			fmt.Println("records count: ", count)
 		case record := <-queueChan:
 			queue = append(queue, record)
 		}
@@ -80,5 +80,5 @@ func main() {
 	http.HandleFunc("/hakaru", hakaruHandler)
 	http.HandleFunc("/ok", func(w http.ResponseWriter, r *http.Request) { w.WriteHeader(200) })
 
-	http.ListenAndServe(":8080", logHandler(http.DefaultServeMux))
+	http.ListenAndServe(":8081", logHandler(http.DefaultServeMux))
 }

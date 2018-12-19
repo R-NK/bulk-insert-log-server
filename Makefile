@@ -17,5 +17,5 @@ docker/down:
 docker/restart:
 	docker-compose restart
 
-hey:
-	hey -c 200  http://localhost:8080/hakaru?name=hey?value=100
+wrk:
+	wrk -t12 -c1000 -d10s  http://localhost:8080/hakaru?name=hey?value=100
