@@ -41,10 +41,10 @@ func ticker() {
 			if err != nil {
 				fmt.Println(err)
 			} else {
+				count, _ := result.RowsAffected()
+				fmt.Println("records count: ", count)
 				queue = make([]Record, 0, 1000)
 			}
-			count, _ := result.RowsAffected()
-			fmt.Println("records count: ", count)
 		case record := <-queueChan:
 			queue = append(queue, record)
 		}
